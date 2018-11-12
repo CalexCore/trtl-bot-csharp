@@ -16,19 +16,24 @@ namespace TrtlBotSharp
             string Output = "";
 
             // Requesting additional help
-            if (Remainder.ToLower() == "faucet")
+            /*if (Remainder.ToLower() == "faucet")
             {
                 Response.Title += string.Format(" - {0}faucet", TrtlBotSharp.botPrefix);
                 Response.AddField("Usage:", string.Format("{0}faucet", TrtlBotSharp.botPrefix));
                 Response.AddField("Description:", "Gives faucet information, including the donation address, a link to the faucet, and how much it has left");
             }
-            else if (Remainder.ToLower() == "hashrate")
-            {
+             
+	    else if (Remainder.ToLower() == "hashrate")
+            */ 
+	    
+	    if (Remainder.ToLower() == "hashrate") 
+	    {
                 Response.Title += string.Format(" - {0}hashrate", TrtlBotSharp.botPrefix);
                 Response.AddField("Usage:", string.Format("{0}hashrate", TrtlBotSharp.botPrefix));
                 Response.AddField("Description:", "Gives the current network hashrate");
             }
-            else if (Remainder.ToLower() == "difficulty")
+	    
+	    else if (Remainder.ToLower() == "difficulty")
             {
                 Response.Title += string.Format(" - {0}difficulty", TrtlBotSharp.botPrefix);
                 Response.AddField("Usage:", string.Format("{0}difficulty", TrtlBotSharp.botPrefix));
@@ -117,19 +122,20 @@ namespace TrtlBotSharp
             {
                 Output += "Informational:\n";
                 Output += "  help\tLists all available commands\n";
-                Output += "  faucet\tGives faucet information\n";
+                //Output += "  faucet\tGives faucet information\n";
                 Output += "Network:\n";
                 Output += "  hashrate\tGives current network hashrate\n";
                 Output += "  difficulty\tGives current network difficulty\n";
                 Output += "  height\tGives current network height\n";
                 Output += "  supply\tGives current circulating supply\n";
-                if (Context.Guild == null || !TrtlBotSharp.marketDisallowedServers.Contains(Context.Guild.Id))
+                /*if (Context.Guild == null || !TrtlBotSharp.marketDisallowedServers.Contains(Context.Guild.Id))
                 {
                     Output += "Market:\n";
                     Output += "  price\tGives current price\n";
                     Output += "  mcap\tGives current global marketcap\n";
                 }
-                Output += "Tipping:\n";
+               */ 
+		Output += "Tipping:\n";
                 Output += "  registerwallet\tRegisters your wallet with the tip bot\n";
                 Output += "  updatewallet\tUpdates your registered wallet\n";
                 Output += "  wallet\tGives the wallet address for a specified user or your own address if no user is specified\n";
@@ -148,6 +154,7 @@ namespace TrtlBotSharp
             await ReplyAsync("", false, Response);
         }
 
+	/*
         [Command("faucet")]
         public async Task FaucetAsync([Remainder]string Remainder = "")
         {
@@ -168,5 +175,6 @@ namespace TrtlBotSharp
             // Send reply
             await ReplyAsync("", false, Response);
         }
+	*/
     }
 }

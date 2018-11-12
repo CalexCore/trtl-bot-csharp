@@ -176,7 +176,7 @@ namespace TrtlBotSharp
                 // Check that user has enough balance for the tip
                 if (GetBalance(Reaction.UserId) < Convert.ToDecimal(Amount) * TippableUsers.Count + tipFee)
                 {
-                    await Reaction.User.Value.SendMessageAsync(string.Format("Your balance is too low! Amount + Fee = **{0:N}** {1}",
+                    await Reaction.User.Value.SendMessageAsync(string.Format("Your balance is too low! Amount + Fee = **{0:N4}** {1}",
                         Convert.ToDecimal(Amount) * TippableUsers.Count + tipFee, coinSymbol));
                     await Message.AddReactionAsync(new Emoji(tipLowBalanceReact));
                     return;
@@ -216,7 +216,7 @@ namespace TrtlBotSharp
                         var Response = new EmbedBuilder();
                         Response.WithTitle(string.Format("{0} wants to tip you!", _client.GetUser(Reaction.UserId).Username));
                         Response.Description = string.Format("Register your wallet with with `{0}registerwallet <your {1} address>` " +
-                            "to get started!\nTo create a wallet head to https://turtlecoin.lol/wallet/\nExtra Help: http://docs.turtlecoin.lol/",
+                            "to get started!\nTo create a wallet head to https://www.getamitycoin.org/wallet/wallet.html",
                             botPrefix, coinSymbol);
 
                         // Send reply
@@ -229,7 +229,7 @@ namespace TrtlBotSharp
                 // Check that user has enough balance for the tip
                 if (GetBalance(Reaction.UserId) < Amount + tipFee)
                 {
-                    await Reaction.User.Value.SendMessageAsync(string.Format("Your balance is too low! Amount + Fee = **{0:N}** {1}",
+                    await Reaction.User.Value.SendMessageAsync(string.Format("Your balance is too low! Amount + Fee = **{0:N4}** {1}",
                         Amount + tipFee, coinSymbol));
                     await Message.AddReactionAsync(new Emoji(tipLowBalanceReact));
                 }
