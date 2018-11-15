@@ -6,7 +6,32 @@ namespace TrtlBotSharp
 {
     public partial class Commands : ModuleBase<SocketCommandContext>
     {
-        [Command("hashrate")]
+        
+	[Command("reward")]
+	public async Task CalculateReward(decimal hashvalue, [Remainder]string Remainder = "")
+	{
+
+     	if (!(hashvalue > 0))
+		{
+	     	//await Context.Message.Author.SendMessageAsync(string.Format("No valid Hashrate entered !", TrtlBotSharp.coinName));
+		}
+	else
+		{
+	   		decimal diff = TrtlBotSharp.GetDifficulty(); 
+	   		decimal avgsec = (diff / hashvalue);
+	   		
+			// max 720 blocks / day fehlt noch 
+			decimal blockperday = (86400 / avgsec);
+	   		decimal rewardperday = (blockperday * 1862621)/10000;
+			
+			
+
+	   		await ReplyAsync(string.Format("Depending on difficulty and your hashrate you might find around **{0:N2}** Blocks per Day \n this  corresponds to a reward of **{1:N4}** {2} per day", blockperday, rewardperday, TrtlBotSharp.coinSymbol));
+        
+		}			
+	}
+
+	[Command("hashrate")]
         public async Task HashrateAsync([Remainder]string Remainder = "")
         {
 	    decimal Hashrate = TrtlBotSharp.GetHashrate();	

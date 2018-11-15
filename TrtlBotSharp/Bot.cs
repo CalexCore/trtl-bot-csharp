@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 
@@ -12,14 +13,21 @@ namespace TrtlBotSharp
 {
     partial class TrtlBotSharp
     {
-        // Initialization
+
+	private static ManualResetEvent resetEvent = new ManualResetEvent(false); // Stop Permanet Reading , CPUIssuses Test   
+        
+	// Initialization
         public static void Main(string[] args)
         {
             // Begin bot process in its own thread
             RunBotAsync();
+	    
+	    //CancelEvent, stopp Bot   
+	    Console.CancelKeyPress += (sender, eventArgs) => resetEvent.Set();
+            resetEvent.WaitOne();	    
 
-            // Wait for keypress to exit
-            Console.ReadKey();
+            // Wait for keypress to exit  // Removed to CPU Usaaege Issue Test
+            //Console.ReadKey();
 
             // Close the database connection
             CloseDatabase();
@@ -61,9 +69,9 @@ namespace TrtlBotSharp
             Log(0, "TrtlBot", "Setting default address");
             await SetAddress();
 
-            // Rest until a disconnect is detected
-            Disconnected = false;
-            while (!Disconnected) { }
+            // Rest until a disconnect is detected ### Removed to CPU Issuses Test
+            //Disconnected = false;
+            //while (!Disconnected) { }
         }
 
         private static bool Monitoring = false;

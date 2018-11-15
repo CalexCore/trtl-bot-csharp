@@ -10,7 +10,8 @@ namespace TrtlBotSharp
 {
     public partial class Commands : ModuleBase<SocketCommandContext>
     {
-        [Command("registerwallet")]
+	
+	[Command("registerwallet")]
         public async Task RegisterWalletAsync(string Address, [Remainder]string Remainder = "")
         {
             // Delete original message
@@ -45,6 +46,7 @@ namespace TrtlBotSharp
                 await Context.Message.Author.SendMessageAsync("", false, Response);
             }
         }
+
 
         [Command("updatewallet")]
         public async Task UpdateWalletAsync(string Address, [Remainder]string Remainder = "")
