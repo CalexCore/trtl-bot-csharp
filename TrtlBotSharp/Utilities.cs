@@ -24,7 +24,7 @@ namespace TrtlBotSharp
 	    if (Result.Count < 1 || Result.ContainsKey("error")) return 0;
 
             // Return current supply
-            return (decimal)Result["block"]["alreadyGeneratedCoins"] / 10000;
+            return (decimal)Result["block"]["alreadyGeneratedCoins"] / coinUnits;
         }
 
 	///  Gets coin Height
