@@ -1,8 +1,8 @@
 {
 "databaseFile": "users.db",
 "logLevel": 2,
-"botToken": "BOTTOKEN",
-"botPrefix": ".",
+"botToken": "",
+"botPrefix": "$",
 "botMessageCache": 200,
 "coinName": "AmityCoin",
 "coinSymbol": "AMIT",
